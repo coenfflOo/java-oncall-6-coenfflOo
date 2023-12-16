@@ -23,11 +23,11 @@ public class StartDateUtil {
         return isWeekend(date) || isLegalHoliday(date);
     }
 
-    private static boolean isWeekend(LocalDate date) {
+    public static boolean isWeekend(LocalDate date) {
         return date.getDayOfWeek() == DayOfWeek.SATURDAY || date.getDayOfWeek() == DayOfWeek.SUNDAY;
     }
 
-    private static boolean isLegalHoliday(LocalDate date) {
+    public static boolean isLegalHoliday(LocalDate date) {
         return LegalHoliday.isHoliday(date.getMonthValue(), date.getDayOfMonth());
     }
 

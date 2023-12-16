@@ -38,7 +38,7 @@ public class OncallMainController {
 
     private static void onCallResult() {
         LocalDate date = calculateStartDate(dayOfMonth.getMonth(), dayOfMonth.getStartDay());
-        List<String> result =  schedulerService.scheduleDuties(date, dayOfMonth.getMonth(), dayOfMonth.getStartDay());
+        List<String> result =  schedulerService.scheduleDuties(date, dayOfMonth.getMonth());
         printResult(result, date);
     }
 }

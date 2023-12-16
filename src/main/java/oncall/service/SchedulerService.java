@@ -18,28 +18,43 @@ public class SchedulerService {
         this.holidayNames = new ArrayList<>(onCallSchedule.getHolidayEmployee());
     }
 
-    public static List<String> scheduleDuties(LocalDate date, int month, String startDay) {
+    public static List<String> scheduleDuties(LocalDate date, int month) {
         List<String> schedule = new ArrayList<>();
         int weekdayIndex = 0, holidayIndex = 0;
         String lastAssignedEmployee = "";
 
         while (date.getMonthValue() == month) {
             boolean isHoliday = isHolidayOrWeekend(date);
-            String employeeName="";
+            String employeeName = "";
 
             if (isHoliday) {
-                employeeName = getNextEmployee(holidayNames, holidayIndex++, lastAssignedEmployee);
-                schedule.add( "(휴일) " + employeeName);
+                employeeName = assignHolidayEmployee(date, holidayIndex++, lastAssignedEmployee, schedule);
             }
             if (!isHoliday){
-                employeeName = getNextEmployee(weekdayNames, weekdayIndex++, lastAssignedEmployee);
-                schedule.add(" " + employeeName);
+                employeeName = assignWeekdayEmployee(weekdayIndex++, lastAssignedEmployee, schedule);
             }
             lastAssignedEmployee = employeeName;
             date = date.plusDays(1);
         }
 
         return schedule;
+    }
+
+    private static String assignHolidayEmployee(LocalDate date, int holidayIndex, String lastAssignedEmployee, List<String> schedule) {
+        String employeeName = getNextEmployee(holidayNames, holidayIndex, lastAssignedEmployee);
+        if (isLegalHoliday(date)) {
+            schedule.add("(휴일) " + employeeName);
+        }
+        if (isWeekend(date)) {
+            schedule.add(" " + employeeName);
+        }
+        return employeeName;
+    }
+
+    private static String assignWeekdayEmployee(int weekdayIndex, String lastAssignedEmployee, List<String> schedule) {
+        String employeeName = getNextEmployee(weekdayNames, weekdayIndex, lastAssignedEmployee);
+        schedule.add(" " + employeeName);
+        return employeeName;
     }
 
     private static String getNextEmployee(List<String> names, int index, String lastEmployee) {
