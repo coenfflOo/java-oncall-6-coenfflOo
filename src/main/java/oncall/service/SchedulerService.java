@@ -54,7 +54,8 @@ public class SchedulerService {
     }
 
     private static String getNextEmployee(List<String> names, int index, String lastEmployee) {
-        String employee = names.get(index % names.size());
+        index %= names.size();
+        String employee = names.get(index);
         if (employee.equals(lastEmployee)) {
             swapEmployeeNames(names, index);
             employee = names.get(index % names.size());
@@ -62,8 +63,8 @@ public class SchedulerService {
         return employee;
     }
 
+
     private static void swapEmployeeNames(List<String> names, int index) {
-        System.out.println(names);
         int nextIndex = (index + 1) % names.size();
         String temp = names.get(index);
         names.set(index, names.get(nextIndex));
