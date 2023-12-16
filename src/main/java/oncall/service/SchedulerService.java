@@ -63,6 +63,7 @@ public class SchedulerService {
     }
 
     private static void swapEmployeeNames(List<String> names, int index) {
+        System.out.println(names);
         int nextIndex = (index + 1) % names.size();
         String temp = names.get(index);
         names.set(index, names.get(nextIndex));
