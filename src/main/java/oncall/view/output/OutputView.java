@@ -13,7 +13,6 @@ public final class OutputView extends OutputWriter {
         for (String name : result) {
             printFormat(RESPONSE_EMPLOYEE.getFormat(), date.getMonthValue(), date.getDayOfMonth(), name, System.lineSeparator());
             date = date.plusDays(1);
-            printNewLine();
         }
     }
 }
