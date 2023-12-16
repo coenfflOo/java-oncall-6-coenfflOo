@@ -25,6 +25,7 @@ public class OncallMainController {
         getInputStartDay();
         getInputOnCallEmployee();
         schedulerService = new SchedulerService(onCallSchedule);
+        onCallResult();
     }
 
     private static void getInputStartDay() {
@@ -38,6 +39,6 @@ public class OncallMainController {
     private static void onCallResult() {
         LocalDate date = calculateStartDate(dayOfMonth.getMonth(), dayOfMonth.getStartDay());
         List<String> result =  schedulerService.scheduleDuties(date, dayOfMonth.getMonth(), dayOfMonth.getStartDay());
-//        printResult(result, date);
+        printResult(result, date);
     }
 }

@@ -3,13 +3,13 @@ package oncall.util;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.Year;
-import java.util.List;
-import oncall.domain.LegalHoliday;
+import oncall.domain.constant.LegalHoliday;
 
 public class StartDateUtil {
     public static LocalDate calculateStartDate(int month, String startDay) {
         LocalDate date = LocalDate.of(Year.now().getValue(), month, 1);
-        DayOfWeek day = DayOfWeek.valueOf(startDay.toUpperCase());
+        String startDayEng = startDay;
+        DayOfWeek day = DayOfWeek.valueOf(startDayEng.toUpperCase());
         while (date.getDayOfWeek() != day) {
             date = date.plusDays(1);
         }

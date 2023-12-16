@@ -33,7 +33,7 @@ public class InputView {
             try {
                 System.out.print(REQUEST_WEEKLY_EMPLOYEE.getMessage());
                 final String input = InputUtil.readLine();
-                final List<String> weeklyEmployee = Parser.parseList(input);
+                final List<String> weeklyEmployee = Parser.parseNameList(input);
                 return requestHolidayEmployee(Employee.of(weeklyEmployee));
             } catch (IllegalArgumentException exception) {
                 System.out.println(exception.getMessage());
@@ -48,7 +48,7 @@ public class InputView {
             try {
                 System.out.print(REQUEST_HOLIDAY_EMPLOYEE.getMessage());
                 final String input = InputUtil.readLine();
-                final List<String> holidayEmployee = Parser.parseList(input);
+                final List<String> holidayEmployee = Parser.parseNameList(input);
                 return OnCallSchedule.of(weeklyEmployee, Employee.of(holidayEmployee));
             } catch (IllegalArgumentException exception) {
                 System.out.println(exception.getMessage());

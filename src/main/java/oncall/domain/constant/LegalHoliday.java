@@ -1,4 +1,4 @@
-package oncall.domain;
+package oncall.domain.constant;
 
 public enum LegalHoliday {
     NEW_YEAR(1, 1),
