@@ -21,6 +21,8 @@ public class DayOfMonth {
     }
 
     private static int validate(String monthInput, String startDay) {
+        INVALID_INPUT.validate(() -> hasWhitespace(monthInput));
+        INVALID_INPUT.validate(() -> hasWhitespace(startDay));
         INVALID_MONTH.validate(() -> !isNumeric(monthInput));
         INVALID_WEEK.validate(() -> isInvalidWeekPattern(startDay));
         int month = Integer.parseInt(monthInput);
@@ -31,6 +33,10 @@ public class DayOfMonth {
     //==validate Logic==//
     private static boolean isNumeric(String input) {
         return input.chars().allMatch(Character::isDigit);
+    }
+
+    private static boolean hasWhitespace(String input) {
+        return input.chars().anyMatch(Character::isWhitespace);
     }
 
     private static boolean isRangeOfYears(int input) {

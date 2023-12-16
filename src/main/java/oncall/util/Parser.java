@@ -30,14 +30,9 @@ public class Parser {
         }
         return list;
     }
-    public static List<String> parseList(String str) {
-        INVALID_INPUT.validate(() -> hasWhitespace(str));
-        INVALID_INPUT.validate(() -> isInvalidDatePattern(str));
-        return Arrays.asList(str.trim().split(",\\s*"));
-    }
 
     //==Business Logic==//
-    public static List<String> parseDayList(String str) {
+    public static List<String> parseList(String str) {
         INVALID_INPUT.validate(() -> hasWhitespace(str));
         INVALID_INPUT.validate(() -> isInvalidDatePattern(str));
         return Arrays.asList(str.trim().split(",\\s*"));
