@@ -5,7 +5,7 @@ import static oncall.view.constant.InputMessage.*;
 import java.util.List;
 import oncall.domain.DayOfMonth;
 import oncall.domain.Employee;
-import oncall.domain.OnCallGroup;
+import oncall.domain.OnCallSchedule;
 import oncall.util.InputUtil;
 import oncall.util.Parser;
 
@@ -28,7 +28,7 @@ public class InputView {
         }
     }
 
-    public static OnCallGroup requestWeeklyEmployee() {
+    public static OnCallSchedule requestWeeklyEmployee() {
         while (true) {
             try {
                 System.out.print(REQUEST_WEEKLY_EMPLOYEE.getMessage());
@@ -37,17 +37,19 @@ public class InputView {
                 return requestHolidayEmployee(Employee.of(weeklyEmployee));
             } catch (IllegalArgumentException exception) {
                 System.out.println(exception.getMessage());
+            }finally {
+                System.out.println();
             }
         }
     }
 
-    public static OnCallGroup requestHolidayEmployee(Employee weeklyEmployee) {
+    public static OnCallSchedule requestHolidayEmployee(Employee weeklyEmployee) {
         while (true) {
             try {
                 System.out.print(REQUEST_HOLIDAY_EMPLOYEE.getMessage());
-//                final String input = InputUtil.readLine();
-//                final List<Integer> number = Parser.parseInput(input);
-//                return BallNumber.of(number);
+                final String input = InputUtil.readLine();
+                final List<String> holidayEmployee = Parser.parseList(input);
+                return OnCallSchedule.of(weeklyEmployee, Employee.of(holidayEmployee));
             } catch (IllegalArgumentException exception) {
                 System.out.println(exception.getMessage());
             }

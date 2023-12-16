@@ -6,6 +6,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class DayOfMonth {
+
     private final int month;
     private final String startDay;
     private static final Pattern REGEX_WEEK_PATTERN = Pattern.compile("^[월화수목금토일]$");
@@ -18,6 +19,14 @@ public class DayOfMonth {
     public static DayOfMonth of(String monthInput, String startDay) {
         int month = validate(monthInput, startDay);
         return new DayOfMonth(month, startDay);
+    }
+
+    public int getMonth() {
+        return month;
+    }
+
+    public String getStartDay() {
+        return startDay;
     }
 
     private static int validate(String monthInput, String startDay) {

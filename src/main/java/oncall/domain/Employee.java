@@ -5,6 +5,7 @@ import static oncall.exception.ErrorCode.*;
 import java.util.List;
 
 public class Employee {
+
     private final List<String> names;
 
     private Employee(List<String> names) {
@@ -42,4 +43,7 @@ public class Employee {
         return input.stream().distinct().count() != input.size();
     }
 
+    public List<String> getNames() {
+        return names;
+    }
 }
