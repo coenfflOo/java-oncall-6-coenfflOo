@@ -23,4 +23,13 @@ public enum DayOfWeek {
         }
         return null; // 혹은 예외 처리
     }
+
+    public static String getDayKor(java.time.DayOfWeek day) {
+        DayOfWeek[] days = DayOfWeek.values();
+        int dayIndex = day.ordinal();
+        if (dayIndex >= 0 && dayIndex < days.length) {
+            return days[dayIndex].dayKor;
+        }
+        return null;
+    }
 }
