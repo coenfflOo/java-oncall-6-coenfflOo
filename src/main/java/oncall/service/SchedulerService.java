@@ -22,25 +22,21 @@ public class SchedulerService {
         List<String> schedule = new ArrayList<>();
         int weekdayIndex = 0, holidayIndex = 0;
         String lastAssignedEmployee = "";
-
         while (date.getMonthValue() == month) {
             boolean isHoliday = isHolidayOrWeekend(date);
-            String employeeName = "";
-
             if (isHoliday) {
-                employeeName = assignHolidayEmployee(date, holidayIndex++, lastAssignedEmployee, schedule);
+                lastAssignedEmployee = assignHolidayEmployee(date, holidayIndex++, lastAssignedEmployee, schedule);
             }
-            if (!isHoliday){
-                employeeName = assignWeekdayEmployee(weekdayIndex++, lastAssignedEmployee, schedule);
+            if (!isHoliday) {
+                lastAssignedEmployee = assignWeekdayEmployee(weekdayIndex++, lastAssignedEmployee, schedule);
             }
-            lastAssignedEmployee = employeeName;
             date = date.plusDays(1);
         }
-
         return schedule;
     }
 
-    private static String assignHolidayEmployee(LocalDate date, int holidayIndex, String lastAssignedEmployee, List<String> schedule) {
+    private static String assignHolidayEmployee(LocalDate date, int holidayIndex, String lastAssignedEmployee,
+                                                List<String> schedule) {
         String employeeName = getNextEmployee(holidayNames, holidayIndex, lastAssignedEmployee);
         if (isLegalHoliday(date)) {
             schedule.add("(휴일) " + employeeName);

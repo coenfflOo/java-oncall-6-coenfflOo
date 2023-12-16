@@ -4,7 +4,6 @@ package oncall.controller;
 import static oncall.util.StartDateUtil.calculateStartDate;
 import static oncall.view.input.InputView.requestStartDay;
 import static oncall.view.input.InputView.requestWeeklyEmployee;
-import static oncall.service.SchedulerService.scheduleDuties;
 import static oncall.view.output.OutputView.printResult;
 
 import java.time.LocalDate;
@@ -18,7 +17,7 @@ public class OncallMainController {
     private static OnCallSchedule onCallSchedule;
     private static SchedulerService schedulerService;
 
-    private OncallMainController(){
+    private OncallMainController() {
     }
 
     public static void start() {
@@ -38,7 +37,7 @@ public class OncallMainController {
 
     private static void onCallResult() {
         LocalDate date = calculateStartDate(dayOfMonth.getMonth(), dayOfMonth.getStartDay());
-        List<String> result =  schedulerService.scheduleDuties(date, dayOfMonth.getMonth());
+        List<String> result = schedulerService.scheduleDuties(date, dayOfMonth.getMonth());
         printResult(result, date);
     }
 }

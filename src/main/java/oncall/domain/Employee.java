@@ -5,6 +5,9 @@ import static oncall.exception.ErrorCode.*;
 import java.util.List;
 
 public class Employee {
+    private static final int MAX_NAME_LENGTH = 5;
+    private static final int MIN_PEOPLE_LENGTH = 5;
+    private static final int MAX_PEOPLE_LENGTH = 35;
 
     private final List<String> names;
 
@@ -32,11 +35,11 @@ public class Employee {
     }
 
     private static boolean isWithinLengthRange(String input) {
-        return input.length() <= 5;
+        return input.length() <= MAX_NAME_LENGTH;
     }
 
     private static boolean isWithinLengthRange(List<String> input) {
-        return input.size() >= 5 && input.size() <= 35;
+        return input.size() >= MIN_PEOPLE_LENGTH && input.size() <= MAX_PEOPLE_LENGTH;
     }
 
     private static boolean isDuplicated(List<String> input) {

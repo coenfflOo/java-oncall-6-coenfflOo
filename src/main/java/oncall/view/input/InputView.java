@@ -37,7 +37,7 @@ public class InputView {
                 return requestHolidayEmployee(Employee.of(weeklyEmployee));
             } catch (IllegalArgumentException exception) {
                 System.out.println(exception.getMessage());
-            }finally {
+            } finally {
                 System.out.println();
             }
         }

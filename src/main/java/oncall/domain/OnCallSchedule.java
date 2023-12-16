@@ -2,11 +2,8 @@ package oncall.domain;
 
 import static oncall.exception.ErrorCode.INVALID_DIFFERENT_PEOPLE;
 
-import java.time.LocalDate;
-import java.time.Year;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 public class OnCallSchedule {
 
@@ -23,7 +20,7 @@ public class OnCallSchedule {
         return new OnCallSchedule(weeklyEmployee, holidayEmployee);
     }
 
-    private static void  isSameEmployee(List<String> weeklyEmployee, List<String> holidayEmployee) {
+    private static void isSameEmployee(List<String> weeklyEmployee, List<String> holidayEmployee) {
         INVALID_DIFFERENT_PEOPLE.validate(() -> !new HashSet<>(holidayEmployee).containsAll(weeklyEmployee));
     }
 

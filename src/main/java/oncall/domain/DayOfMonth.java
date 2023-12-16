@@ -7,9 +7,11 @@ import java.util.regex.Pattern;
 
 public class DayOfMonth {
 
+    private static final Pattern REGEX_WEEK_PATTERN = Pattern.compile("^[월화수목금토일]$");
+    private static final int MIN_MONTH = 1;
+    private static final int MAX_MONTH = 12;
     private final int month;
     private final String startDay;
-    private static final Pattern REGEX_WEEK_PATTERN = Pattern.compile("^[월화수목금토일]$");
 
     private DayOfMonth(int month, String startDay) {
         this.month = month;
@@ -49,13 +51,13 @@ public class DayOfMonth {
     }
 
     private static boolean isRangeOfYears(int input) {
-        return input < 1 || input > 12;
+        return input < MIN_MONTH || input > MAX_MONTH;
     }
 
     private static boolean isInvalidWeekPattern(String input) {
         return matchWithRegex(input, REGEX_WEEK_PATTERN);
     }
-    // == 정규표현식 제약 조건== //
+
     private static boolean matchWithRegex(String input, Pattern regex) {
         Matcher matcher = regex.matcher(input);
         return !matcher.matches();
